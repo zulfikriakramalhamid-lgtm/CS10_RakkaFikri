@@ -1,15 +1,19 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
-void vigenereDecrypt(char *ciphertext, char *key) {
+
+void vigenereDecrypt(char *ciphertext, char *key)
+{
     int i, j;
     int msgLen = strlen(ciphertext);
     int keyLen = strlen(key);
     char ch;
-    for (i = 0, j = 0; i < msgLen; i++) {
+    for (i = 0, j = 0; i < msgLen; i++)
+    {
         ch = ciphertext[i];
-        if (isalpha(ch)) {
+        if (isalpha(ch))
+        {
             char offset = isupper(ch) ? 'A' : 'a';
             int k = tolower(key[j % keyLen]) - 'a';
             int p = (ch - offset - k + 26) % 26;
@@ -20,9 +24,10 @@ void vigenereDecrypt(char *ciphertext, char *key) {
     }
 }
 
-int main() {
-    char ciphertext[] = "!gsaH xinH ,fmaskgW rudT"; //Pesan Enkripsi
-    char key[] = "tempkey";
+int main()
+{
+    char ciphertext[] = "Asiy Nmezpam, Ytce Wozx!"; // Pesan Enkripsi
+    char key[] = "RealKey";
 
     printf("Encypted Text : %s\n", ciphertext);
     vigenereDecrypt(ciphertext, key);
